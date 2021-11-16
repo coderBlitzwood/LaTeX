@@ -1,0 +1,56 @@
+\section{Grimmet and Welsh Chapter 1 Problem 15}
+\subsection{Question}
+
+A coin is tossed repeatedly; on each toss a head is shown with probability $p$, a tail with probability $1-p$. All tosses are mutually independent. 
+Let $E$ denote the event that the first run of $r$ successive heads occurs earlier than the first run of $s$ successive tails.
+Let $A$ denote the outcome of the first toss. Show that
+\begin{IEEEeqnarray*}{l}
+\mathbf{P} (E \mid A\text{ = head}) = p^{r-1} + (1 - p^{r-1}) \mathbf{P} (E \mid A\text{ = tail}) 
+\end{IEEEeqnarray*}
+
+Find a similar expression for $\mathbf{P} (E \mid A\text{ = head})$ and hence find $\mathbf{P} (E)$.
+
+\subsection{Answer}
+
+If $A$ is a head, there are two options which can contribute to $E$ occurring :\\
+\begin{enumerate}[(i)]
+\item The next $r-1$ tosses are all heads, with probability $p^{r-1}$ - which means $E$ has occured.
+\item The next $r-1$ tosses are not all heads (with probability $1 - p^{r-1}$), so a tail appears, at which point the 'counts' of $r$ and $s$ are reset to the state after the first toss was a tail.
+\end{enumerate}
+
+\begin{IEEEeqnarray*}{l}
+\therefore \mathbf{P} (E \mid A\text{ = head}) = p^{r-1} + (1 - p^{r-1}) \mathbf{P} (E \mid A\text{ = tail}) 
+\end{IEEEeqnarray*}
+
+If $A$ is a tail, there is one option (since a run of $s$ tails means that $E$ does not occur) :\\
+\begin{enumerate}[(i)]
+\item The next $s-1$ tosses are not all tails (with probability $1 - (1-p)^{s-1}$), so a head appears, at which point the 'counts' of $r$ and $s$ are reset to the state after the first toss was a head.
+\end{enumerate} 
+
+\begin{IEEEeqnarray}{l}
+\therefore \mathbf{P} (E \mid A\text{ = tail}) = \left(1 - (1-p)^{s-1}\right) \mathbf{P} (E \mid A\text{ = head}) 
+\label{Problem1_15}
+\end{IEEEeqnarray}
+
+Eliminating $\mathbf{P} (E \mid A\text{ = tail}) $, 
+\begin{IEEEeqnarray*}{l}
+\mathbf{P} (E \mid A\text{ = head}) = \frac{p^{r-1}}{1 - (1-p^{r-1})\left(1 - (1-p)^{s-1}\right) }
+\end{IEEEeqnarray*}
+
+and now using \eqref{Problem1_15} : 
+\begin{IEEEeqnarray*}{l}
+\mathbf{P} (E \mid A\text{ = tail}) = \frac{p^{r-1}\left(1 - (1-p)^{s-1}\right)}{1 - (1-p^{r-1})\left(1 - (1-p)^{s-1}\right) }
+\end{IEEEeqnarray*}
+
+But $\mathbf{P} (E) = \mathbf{P} (E \mid A\text{ = head})p + \mathbf{P} (E \mid A\text{ = tail}) (1-p) $, so
+\begin{IEEEeqnarray*}{l}
+\mathbf{P} (E)  = \frac{p^r + (1-p)p^{r-1}\left(1 - (1-p)^{s-1}\right)}  {1 - (1-p^{r-1})\left(1 - (1-p)^{s-1}\right) } \\
+\qquad = \frac{p^{r-1}(1 - (1-p)^s)}  {p^{r-1} + (1-p)^{s-1} - p^{r-1}(1-p)^{s-1}}
+\end{IEEEeqnarray*}
+
+\subsection{Comment}
+It is a messy expression, but we can do one reasonability check, namely that if $r = s$ and $p = (1-p) = \frac{1}{2}$ :
+\begin{IEEEeqnarray*}{l}
+\mathbf{P} (E)  =  \frac{\frac{1}{2}^{r-1}(1 - \frac{1}{2}^r)}  {\frac{1}{2}^{r-1} + \frac{1}{2}^{r-1} - \frac{1}{2}^{r-1}\frac{1}{2}^{r-1}} = \frac{1}{2}
+\end{IEEEeqnarray*}
+as expected!

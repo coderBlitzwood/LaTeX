@@ -1,0 +1,40 @@
+\section{Grimmet and Welsh Chapter 1 Problem 6}
+\subsection{Question}
+
+
+A single card is removed from a deck of 52 cards. From the remainder we draw 2 cards at random and find that they are both spades. \\
+What is the probability that the first card removed was also a spade?
+
+\subsection{General observation}
+Given the 'large' number of cards of each suit, we would still expect the answer to be quite close to $\frac{1}{4}$, but slightly lower since one of the possible spades was removed.
+
+\subsection{Answer}
+Firstly, we evaluate the probability of drawing 2 spades from the remaining 51 cards, conditioned on the first card. \\
+Let $2 \spadesuit$ be the event of drawing 2 spades, $\spadesuit_1$ be the event of the removed card being a spade, and $  !\spadesuit_1$ be the event that the removed card is not a spade. 
+
+\begin{equation*} 
+\mathbf{P}(2 \spadesuit)  = \mathbf{P}(2 \spadesuit \mid \spadesuit_1)\times  \mathbf{P}(\spadesuit_1) + 
+\mathbf{P}(2 \spadesuit \mid \, !\spadesuit_1)\times  \mathbf{P}(!\spadesuit_1) 
+\end{equation*} 
+  
+\begin{equation*} 
+= \left(\frac{12}{51}\right)\left(\frac{11}{50}\right)\times\left(\frac{1}{4}\right) + \left(\frac{13}{51}\right) \left(\frac{12}{50}\right)\times\left(\frac{3}{4}\right)
+= \frac{33 + 117}{51\times 50} = \frac{1}{17}
+\end{equation*} 
+
+From the definition of conditional probability (see \eqref{Formula1.6}) : 
+\begin{equation*} 
+\mathbf{P} (A \mid B) = \frac{\mathbf{P}(A \cap B)} {\mathbf{P}(B)}  
+\end{equation*} 
+\begin{equation*} 
+\therefore \mathbf{P} (A \mid B) = \mathbf{P} (B \mid A) \times \frac{\mathbf{P}(B)}{\mathbf{P}(A)} \text{   provided } \mathbf{P}(B) > 0 \text{ and } \mathbf{P}(A) > 0
+\end{equation*} 
+
+So, \\ 
+\begin{equation*} 
+\mathbf{P}(\spadesuit_1 \mid 2 \spadesuit) = \mathbf{P}(2 \spadesuit \mid  \spadesuit_1) \times \left(\frac{\mathbf{P}(\spadesuit_1)}{\mathbf{P}(2 \spadesuit)}\right)
+ \end{equation*} 
+ \begin{equation*} 
+= \frac{12}{51} \times \frac{11}{50} \times \frac{1}{4} \div \frac{1}{17} = \frac{12 \times 17 \times 11}{4 \times 51 \times 50} = \frac{11}{50}
+ \end{equation*} 
+ 

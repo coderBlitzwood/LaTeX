@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Tue Feb 23 14:36:36 GMT 2021
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=Main_probability.tex
+outputFile=Main_probability.pdf
+langSpell=en
+markDer=true
+srcDir=

@@ -1,0 +1,80 @@
+\documentclass{article}
+%\pdfpagewidth=\paperwidth
+%\pdfpageheight=\paperheight
+\addtolength{\hoffset}{-0.9cm}
+\addtolength{\textwidth}{1.8cm}
+\addtolength{\voffset}{-0.9cm}
+\addtolength{\textheight}{1.8cm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\author{Andy Mitchell}
+\title{Comments on Sigma 7/4/2005 - Breen Sweeney's \\ ``A Probability Paradox Revisited''} \begin{document} \maketitle \begin{flushleft}
+
+I'll briefly steal a bit of Breen's contribution to restate the scenario :- \begin{quote} You start with an initial stake $A$ (e.g. \pounds100). You make a bet with a 50\% chance of winning (e.g. toss a coin, heads you win, tails you lose).
+When winning you receive a certain proportion of you total current amount, call it $x$, and for losing your money is reduced by that proportion.
+So for winning you will have $A(1+x)$ and for losing you'll have $A(1-x)$.
+\end{quote}
+\ \\
+\ \\
+In Breen's contribution, he pondered the approach of finding the long term result by looking at a large number $m+n$ of games with $n$ wins and $m$ losses, but realised that there was a flaw in his reasoning.
+\ \\
+\ \\
+The offending step is the line :
+\begin{quote}
+Now in the limit as $n$ and $m$ get larger, we know that the wins must be equal to the losses, hence $n$ and $m$ will be equal ...
+\end{quote}
+
+This is essentially the original paradox where only the situation of an equal number of wins and losses is considered, but this time repeated $n$-fold.
+\ \\
+\ \\
+A waffly argument which might help could start by just looking at the number of heads and tails after $2n$ tosses (assuming we're using the coin method of generating our 50\% of course!).
+
+
+The probability of $n$ wins and $n$ losses (i.e. $m=n$ in the
+argument) is:-
+
+
+\begin{equation} \label{eq:A}
+p_{n,n} = \binom{2n}{n}\frac{1}{2^{2n}} = \frac{(2n)!}{(n!)^2}\frac{1}{2^{2n}}
+\end{equation}
+
+Using Stirling's formula ( $k! \approx \sqrt{2 \pi k}\cdot k^{k}e^{-k}$
+) :-
+\begin{equation} \label{eq:B}
+p_{n,n} \approx \frac{\sqrt{2\pi 2n}\cdot 2^{2n}n^{2n}e^{-2n}}{2\pi n\cdot n^{2n}e^{-2n}2^{2n}} = \frac{1}{\sqrt{\pi n}} \end{equation}
+
+so the actual chance of having equal wins and losses after $2n$ throws tends to $0$ as $n \to \infty$.\\ \ \\ (By $\approx$ , I mean that the ratio of each side tends to $1$ as $n \to \infty$.)\\ \ \\ \ \\ Also, the probability of $n+k$ wins and $n-k$ losses (or $n-k$ wins and $n+k$ losses) after $2n$ throws is (for $0<k \ll n$) :-
+
+\begin{align}
+p_{n-k,n+k} = p_{n+k,n-k} &= \binom{2n}{n+k}\frac{1}{2^{2n}} \\ &= p_{n,n}\frac{(n-k+1)(n-k+2)\cdots n}{(n+1)(n+2)\cdots (n+k)} \\ &\approx p_{n,n} \end{align}
+
+So, not only does exactly $n$ wins and $n$ losses get progressively more unlikely as $n$ increases, there is a widening range of 'surrounding' possibilities each with similar likelihood of occurring, but symmetrical about $p_{n,n}$.
+To the expected overall takings, however, the contributions from the ``$n+k$ wins, $n-k$ losses'' add more than the ``$n-k$ wins, $n+k$ losses'' subtract (provided $x > 0$), so the question is whether these are enough to boost the expected 'take home' amount from $A(1-x^{2})^n$ to something non-vanishing.
+
+My waffle doesn't have sufficient power to answer this, but the actual expected takings after $2n$ games (as Anthony Robin also demonstrated for $n$ games in his original article) can be seen to be :-
+
+\begin{equation} \label{eq:C}
+A \sum_{i=0}^{2n}\binom{2n}{i} \frac{(1-x)^{i}(1+x)^{2n-i}}{2^{2n}}
+\end{equation}
+\begin{equation} \label{eq:D}
+= A \left(\frac{1}{2}(1-x) + \frac{1}{2}(1+x)\right)^{2n} = A \end{equation}
+
+(using the binomial theorem as Breen suspected).
+
+\ \\
+\ \\
+\ \\
+As an aside, can anybody find a neat/elegant demonstration of :- \begin{equation} \label{eq:E} \lim_{n \to \infty}\binom{2n}{n}\frac{\sqrt{\pi n}}{2^{2n}} = 1 \end{equation}
+
+without using Stirling's formula?
+I haven't, but it feels like there might be!
+
+
+
+
+
+
+
+\end{flushleft}
+\end{document}
+

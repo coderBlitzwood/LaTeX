@@ -1,0 +1,103 @@
+\section{Grimmet and Welsh Chapter 1 Problem 7}
+\subsection{Question}
+
+Two people toss a fair coin $n$ times. Show that the probability that they throw an equal number of heads is 
+\begin{equation*} 
+\binom{2n}{n}\left(\frac{1}{2}\right)^{2n}
+\end{equation*} 
+
+\subsection{Answer 1}
+The hints section of the book suggests this.\\
+If $X$ and $Y$ are the numbers of heads tossed by each person :
+
+\begin{equation*} 
+\mathbf{P}(X = Y) = \sum_k \mathbf{P}(X = k)\mathbf{P}(Y = k) =  \sum_k \mathbf{P}(X = k)\mathbf{P}(Y = n - k)  
+\end{equation*}
+The last statement works because the coin is fair, so this is essentially saying that $k$ heads has the same probability as $k$ tails, which is the same event as $n - k$ heads. 
+But,
+\begin{equation*} 
+\sum_k \mathbf{P}(X = k)\mathbf{P}(Y = n - k) =   \mathbf{P}(X + Y = n)
+\end{equation*}
+
+which is the probability of, regardless of how they are distributed amongst each person, $n$ heads result from $2n$ tosses, which is just  $\binom{2n}{n}\left(\frac{1}{2}\right)^{2n}$
+
+\subsection{Answer 2}
+Here is a more direct (and longer!) approach.
+\begin{equation*} 
+\mathbf{P}(X = Y) = \sum_k \mathbf{P}(X = k)\mathbf{P}(Y = k) = 
+ \sum_k \frac{1}{2^k}\frac{1}{2^{n-k}} \binom{n}{k} \frac{1}{2^k}\frac{1}{2^{n-k}} \binom{n}{k} 
+  = \frac{1}{2^{2n}}\sum_{k=0}^n \binom{n}{k}^2
+\end{equation*}
+
+Now,
+\begin{equation*}
+(1 + x)^n = \binom{n}{0}x^0 + \binom{n}{1}x^1 + \binom{n}{2}x^2 + \cdots + \binom{n}{n-1}x^{n-1} + \binom{n}{n}x^n  \text{ , and}   
+\end{equation*}
+\begin{equation*}
+(x + 1)^n = \binom{n}{0}x^n + \binom{n}{1}x^{n-1} + \binom{n}{2}x^{n-2} + \cdots + \binom{n}{n-1}x^1 + \binom{n}{n}x^0   
+\end{equation*}
+If we multiply these two equations, but only look at the coefficients of $x^n$ we obtain : 
+\begin{equation*}
+\binom{2n}{n} x^n = x^n\left(\binom{n}{0}^2 + \binom{n}{1}^2 + \binom{n}{2}^2 + \cdots + \binom{n}{n-1}^2 + \binom{n}{n}^2 \right) 
+\end{equation*}
+
+and the result follows immediately.
+\clearpage  %forces a new page.
+\subsection{Pascals triangle}
+
+The above equations have an interesting 'visual' appeal when we look at Pascal's triangle.
+
+\begin{table}[!hbp]
+\begin{tabular}{llllllllllllllllll}
+\textbf{n=0} &   &   &   &   &            &            &             &             & 1           &             &             &            &            &   &   &   &   \\
+\textbf{n=1} &   &   &   &   &            &            &             & 1           &             & 1           &             &            &            &   &   &   &   \\
+\textbf{n=2} &   &   &   &   &            &            & 1           &             & 2           &             & 1           &            &            &   &   &   &   \\
+\textbf{n=3} &   &   &   &   &            & 1          &             & 3           &             & 3           &             & 1          &            &   &   &   &   \\
+\textbf{n=4} &   &   &   &   & \textcolor{red}{\textbf{1}} &            & \textcolor{red}{\textbf{4}}  &             & \textcolor{red}{\textbf{6}}  &             & \textcolor{red}{\textbf{4}}  &            & \textcolor{red}{\textbf{1}} &   &   &   &   \\
+\textbf{n=5} &   &   &   & 1 &            & \textcolor{red}{\textbf{5}} &             & \textcolor{red}{\textbf{10}} &             & \textcolor{red}{\textbf{10}} &             & \textcolor{red}{\textbf{5}} &            & 1 &   &   &   \\
+\textbf{n=6} &   &   & 1 &   & 6          &            & \textcolor{red}{\textbf{15}} &             & \textcolor{red}{\textbf{20}} &             & \textcolor{red}{\textbf{15}} &            & 6          &   & 1 &   &   \\
+\textbf{n=7} &   & 1 &   & 7 &            & 21         &             & \textcolor{red}{\textbf{35}} &             & \textcolor{red}{\textbf{35}} &             & 21         &            & 7 &   & 1 &   \\
+\textbf{n=8} & 1 &   & 8 &   & 28         &            & 56          &             & \textcolor{red}{\textbf{70}} &             & 56          &            & 28         &   & 8 &   & 1
+\end{tabular}
+\end{table}
+
+Looking at the inverted triangle of bold red values starting at the line $n = 4$ and reaching the value $70$ at the lowest point (where $n=8$), we now know that \\
+$1^2 + 4^2 + 6^2 + 4^2 + 1^2 = 70$ \\
+This works for any such inverted triangle.  
+
+\subsection{Large $n$}
+We would certainly expect the value of $\binom{2n}{n} x^n$ to approach $0$ as $n \rightarrow \infty,$ since the chance of the same number of heads for an enormous number of throws seems remote. \\
+The value also seem to decrease ``quite slowly'', e.g. the values for $n=8$ and $n=32$ are around $\frac{1}{5}$ and $\frac{1}{10}$ respectively. \\
+Using Stirling's formula :     
+\begin{equation*}
+n!  \sim \sqrt{2 \pi n}(\frac{n}{e})^n \implies \binom{2n}{n}\left(\frac{1}{2}\right)^{2n} \sim \left(\frac{\sqrt{2 \pi 2n}(\frac{2n}{e})^{2n}}{\sqrt{2 \pi n}(\frac{n}{e})^n \times \sqrt{2 \pi n}(\frac{n}{e})^n}\right)\left(\frac{1}{2}\right)^{2n}
+\end{equation*}
+\begin{equation*}
+= \frac{1}{\sqrt{\pi n}}
+\end{equation*}
+
+This is a very good approximation for the actual values, even for small $n$.
+
+\subsection{What about an unfair coin?}
+ 
+We cannot use the sneaky trick from Answer 1, so we can perhaps attempt a direct approach again\ldots
+We now use a biased coin which shows heads with probability $p = 1 - q$ whenever it is tossed. \\
+
+Now,
+\begin{equation*}
+\mathbf{P}(X = Y) = \sum_k \mathbf{P}(X = k)\mathbf{P}(Y = k) = 
+ \sum_k \left(\binom{n}{k}\right)^2 p^2k q^2{n-k} 
+\end{equation*}
+
+If we try a similar trick to evaluate this, we would start with : 
+\begin{equation*}
+(1 +p^2 x)^n = \binom{n}{0}x^0 + \binom{n}{1}p^2x^1 + \binom{n}{2}p^2x^2 + \cdots + \binom{n}{n-1}p^{2n-2}x^{n-1} + \binom{n}{n}p^{2n}x^n  \text{ , and}   
+\end{equation*}
+\begin{equation*}
+(q^2x + 1)^n = \binom{n}{0}q^{2n}x^n + \binom{n}{1}q^{2n-2}x^{n-1} + \binom{n}{2}q^{2n-4}x^{n-2} + \cdots + \binom{n}{n-1}q^2x^1 + \binom{n}{n}x^0   
+\end{equation*}
+
+and we could try to determine the coefficient of $x^n$ in $(1+p^2x)^n (1+q^2x)^n$ \\
+Unfortunately, there appears to be no naturally simple answer to this (except for the sum we are trying to determine in the first place).
+
+I suspect there is no closed formula for the probability for the unfair coin! 

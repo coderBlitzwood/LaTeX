@@ -1,0 +1,53 @@
+\section{Grimmet and Welsh Chapter 1 Exercise 11}
+\subsection{Question}
+
+Show that if a coin is tossed $n$ times, then there are exactly
+ 
+\begin{equation*} 
+\binom{n}{k} = \frac{n!}{k!(n-k)!} 
+\end{equation*}
+
+sequences of possible outcomes in which exactly $k$ heads are obtained. 
+If the coin is fair (so that heads and tails are equally likely on each toss), show that the probability of getting
+at least $k$ heads is
+
+\begin{equation*} 
+\frac{1}{2^n}\sum^n_{r=k}{\binom{n}{r}} 
+\end{equation*}
+
+\subsection{Answer 1}
+% TAG is the printed reference after the equation, LABEL is only used for internal back-referencing - i.e.
+% Please see \eqref{Formula1}  will display : Please see (F1)
+
+A direct approach by enumerating the possibilities and trying to place $k$ heads into $n$ available positions : \\
+The number of positions we can pick out of the $n$ for the 1st head we place is $n$. \\
+The number of positions we can pick out of the $n$ for the 2nd head we place is $n-1$. \\
+\ldots \\
+The number of positions we can pick out of the $n$ for the $k$th head we place is $n-k+1$. \\ 
+
+$\therefore$ The total number of permutations is $n(n-1)\ldots(n-k+1) = \frac{n!}{(n-k)!}$
+
+But, every permutation of the $k$ heads has been included in the above, so we need to divide by $k!$ :
+
+Number of possible outcomes = 
+\begin{equation*}
+\binom{n}{k} = \frac{n!}{k!(n-k)!} 
+\end{equation*}   
+ 
+
+\subsection{Answer 2}
+Use induction on $n$, where (clearly) $n\geq k$.
+
+If $n=k$ then the number of possible outcomes is $\frac{n!}{k!(n-k)!} \equiv 1$ which is true.
+
+If it is true for $n=t$ (where $t\geq k$) then number of possible outcomes is $\frac{t!}{k!(t-k)!}$.
+\\
+For $t+1$ tosses, the number of possible outcomes is the total of those in which the first toss is a head, and those in which the first toss is a tail : 
+
+\begin{IEEEeqnarray*}{rCl} 
+&& \frac{t!}{(k-1)!(t-k+1)!} + \frac{t!}{k!(t-k)!} \\ \\
+ & = & \frac{t!(k+t-k+1)}{k!(t-k+1)!}  \\ \\
+ & = & \frac{(t+1)!}{((t+1)-k)! k!} 
+\end{IEEEeqnarray*} 
+ 
+so the statement is therefore true for $n=t+1$, and therefore all $n\geq k$.   {\Large Q.E.D.}

@@ -1,0 +1,42 @@
+\section{Grimmet and Welsh Chapter 1 Problem 13}
+\subsection{Question}
+
+Two identical decks of cards, each containing $N$ cards, are shuffled randomly. We say that a $k$-matching occurs if the two decks agree in exactly $k$ places.
+Show that the probability that there is a $k$-matching is 
+
+\begin{equation}
+\pi_k = \frac{1}{k!}\left(1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} + \cdots + \frac{(-1)^{N-k}}{(N-k)!}\right) 
+\end{equation}
+for $k = 0, 1, 2, \ldots , N-1, N$. 
+We note that $\pi_k \simeq (k!e)^{-1} $ for large $N$ and fixed $k$. Such matching probabilities are used in testing departures from randomness
+in circumstances such as psychological tests and wine-tasting competitions. (The convention is that $0! = 1$.) 
+
+\subsection{Answer}
+
+$\pi_k$ is the probability of exactly $k$ matches, which arises if there are $k$ matches amongst the $N$ cards and the remaining $N-k$ are not matched. \\
+Now, $k$ matches can occur in $\binom{N}{k}$ ways, each with probability $\frac{1}{N}\frac{1}{N-1}\cdots \frac{1}{N-k+1}$. \\ 
+From the answers to problem 12b, we also know that the probability of no matches amongst the $N-k$ cards \emph{given that the other } k \emph{cards match} 
+(so the $N-k$ cards from each deck contain the same values amongst them), is :  
+ \begin{equation*} 
+= 1 - \left(\frac{1}{1!} -  \frac{1}{2!} + \frac{1}{3!} - \cdots  +  (-1)^{N-k+1}\frac{1}{(N-k)!}\right)
+\end{equation*}
+
+Using the fact (see \eqref{Formula1.6}) that $\mathbf{P}(A \cap B) = \mathbf{P}(B) \mathbf{P} (A \mid B)$, we obtain
+\begin{equation*} 
+\pi_k =  \frac{1}{N}\frac{1}{N-1}\cdots \frac{1}{N-k+1}   \binom{N}{k}  \left[ 1 - \left(\frac{1}{1!} -  \frac{1}{2!} + \frac{1}{3!} - \cdots  +  (-1)^{N-k+1}\frac{1}{(N-k)!}\right)\right] 
+\end{equation*} 
+
+\begin{equation*} 
+ =  \frac{1}{k!} \left[ 1 - \frac{1}{1!} +  \frac{1}{2!} - \frac{1}{3!} + \cdots  +  (-1)^{N-k}\frac{1}{(N-k)!}\right] 
+\end{equation*} {\Large Q.E.D.}
+
+\subsection{Comment}
+As noted in the question,  $\pi_k \simeq (k!e)^{-1} $ for large $N$ and fixed $k$.\\
+This gives the interesting result that  $\pi_0 \simeq \pi_1 \simeq \frac{1}{e}$ for even quite small $N$. \\
+\  \\
+There are a couple of other checks we can do, firstly setting $k=N$. In this case the expression instantly collapses to $\frac{1}{N!}$ which is as we expect. \\
+\  \\
+Also, with no justification whatsoever that it is valid, we note that the sum of the approximations of $\pi_k$ for $0 \leq k \leq N$ is 
+\begin{equation*} 
+ \sum_{k=0}^N\pi_k \simeq \frac{1}{e} \left[ \frac{1}{0!} - \frac{1}{1!} +  \frac{1}{2!} - \frac{1}{3!} + \cdots  +  (-1)^{N}\frac{1}{(N)!}\right] \simeq 1 
+\end{equation*}

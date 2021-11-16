@@ -1,0 +1,2 @@
+\contentsline {section}{\numberline {1}Individual symbols}{2}{}%
+\contentsline {section}{\numberline {2}Playing only}{3}{}%

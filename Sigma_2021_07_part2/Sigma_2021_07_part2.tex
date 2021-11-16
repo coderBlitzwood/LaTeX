@@ -1,0 +1,346 @@
+\documentclass[a4paper,10pt]{article}
+\pagestyle{plain}
+%\pdfpagewidth=\paperwidth
+%\pdfpageheight=\paperheight
+\addtolength{\textheight}{3.1cm}
+\addtolength{\textwidth}{2.1cm}
+\addtolength{\voffset}{-2.1cm}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage{enumerate}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{longtable}
+\usepackage{xcolor}
+\author{Andy Mitchell}
+% Define the title
+\title{Probability problems for Sigma - part 2}
+\begin{document} 
+\maketitle 
+\begin{flushleft} 
+%\section{Introduction}
+Hello Sigma members! 
+\\
+Following from my previous ``Probability problems for Sigma - part 1", I had a crack at a slightly different problems - described below.
+As there is quite a lot of manipulation of formulae involving $p$ and $q$ , I'm starting with some potentially useful identities before launching in\ldots.
+I'm also using some recurrence relations, so feel free to look at part 1 if you wish.
+
+\section{Formulae involving $p$ and $q$}
+This section includes some random identities involving the probabilities $p$ and $q = 1-p$ :
+\begin{equation}
+p^2 + q^2 \equiv 1 - 2pq \tag{PQ1} \label{PQ1}
+\end{equation}
+\begin{equation}
+p + q^2 \equiv q + p^2 \tag{PQ2} \label{PQ2}
+\end{equation}
+\begin{equation}
+q + pq + p^2  \equiv 1 \tag{PQ3} \label{PQ3}
+\end{equation}
+\begin{equation}
+p^3 + q^3  \equiv 1-3pq \tag{PQ4} \label{PQ4}
+\end{equation}
+\begin{equation}
+p^4 + q^4  \equiv 1-4pq + 2p^2q^2 \tag{PQ5} \label{PQ5}
+\end{equation}
+
+
+\section{Runs of either heads or tails}
+\subsection{Question}
+
+A biased coin shows heads with probability $p = 1 - q$ whenever it is tossed. \\
+What is the probability that in $n$ tosses, there is no run of length $R$ of \emph{either} heads or tails? ($n \geq 1$)
+
+\subsection{Comment 1}
+I suspect that a general solution, even establishing a general recurrence relation for any $R$ is quite tricky. 
+All I have done is to evaluate some particular cases, and presume that the same method can applied for any larger specific value of $R$.
+
+\subsection{Answer for $R = 2$}
+
+The question for $R = 2$ is actually very easy, since after the first toss, all subsequent values must alternate between heads and tails to avoid a run of $2$. \\
+For even values of $n$ , $v_n = 2p^{n/2}q^{n/2}$, and for odd values of $n$, $v_n = p^{(n+1)/2}q^{(n-1)/2} + p^{(n-1)/2}q^{(n+1)/2} = p^{(n-1)/2}q^{(n-1)/2}$, 
+however this is a useful example to cut our teeth on!\\
+
+Let $A_j$ represent the event that, in $j$ tosses, no pair of heads or tails occur successively and let $v_j := \mathbf{P}(A_j)$. \\
+Also, define $H_j$ as $\mathbf{P}(A_j \mid \text{first toss is a head})$ and $T_j$ as $\mathbf{P}(A_j \mid \text{first toss is a tail})$.\\
+
+Conditioning on the result of the first toss for $v_{n+2}$, 
+\begin{IEEEeqnarray*}{l}
+v_{n+2} = \mathbf{P}(A_{n+2}) = H_{n+2} p + T_{n+2} q \\
+\end{IEEEeqnarray*}
+
+But, $H_{n+2}$ is the probability of no pair occurring in ${n+2}$ tosses given a head on the first toss, which means that the subsequent toss can only be a tail (with probability $q$) 
+and the 'state' is then reset to that in which there are $n+1$ tosses remaining with the ``first'' toss being a tail. So 
+\begin{equation} 
+H_{n+2} = q T_{n+1} \qquad \text{ and similarly } T_{n+2} = p H_{n+1}
+\label{R2_1}
+\end{equation}
+which gives :
+\begin{IEEEeqnarray*}{l}
+v_{n+2} = pq (T_{n+1} + H_{n+1}) \\
+\end{IEEEeqnarray*}
+
+Using \eqref{R2_1} again, but with $n$ reduced by $1$, this leads to 
+\begin{IEEEeqnarray*}{l}
+v_{n+2} = pq (pH_{n} + qT_{n+1}) \\
+\qquad = pq v_n
+\end{IEEEeqnarray*}
+
+Also, we can determine by looking at the possibilities, that $v_1 = 1$ and $v_2 = pq + qp = 2pq$.
+
+From this, we can directly obtain the solution mentioned at the beginning of this section. 
+Alternatively, we can solve the recurrence relation :
+
+The auxiliary equation is $\theta^2 - pq = 0 \implies \theta = \pm \sqrt{pq}$ , yielding the general solution : 
+\begin{equation*} 
+v_n = C (-\sqrt{pq})^n + D (\sqrt{pq})^n \text{ for some } C \text{ and } D.
+\end{equation*} 
+
+From the initial conditions, 
+\begin{IEEEeqnarray*}{l}
+v_1 = 1 \implies 1 = (-C+D) \sqrt{pq} \\
+v_2 = 2pq \implies 2pq = (C+D)pq \implies C+D = 2 \\
+\qquad \implies C = 1 - \frac{1}{2 \sqrt{pq}} \text{ and } D = 1 + \frac{1}{2 \sqrt{pq}}
+\end{IEEEeqnarray*}
+
+So : 
+\begin{IEEEeqnarray*}{l}
+v_n = \left(1 - \frac{1}{2 \sqrt{pq}}\right) (-\sqrt{pq})^n + \left(1 + \frac{1}{2 \sqrt{pq}}\right) (\sqrt{pq})^n
+\end{IEEEeqnarray*}
+
+This looks quite unusual, but for even and odd values of $n$, different pairs of terms cancel each other out to give the result we had before.
+
+Note that for $p = q = \frac{1}{2}$, the values of $v_1$, $v_2$, $v_3$, $v_4$ etc. are $1$, $\frac{1}{2}$,$\frac{1}{4}$,$\frac{1}{8}$ \ldots. 
+
+
+
+
+
+\clearpage
+
+ 
+
+
+\subsection{Answer for $R = 3$}
+This time the solution is not obvious (to me anyway!), but we can try the same approach.
+
+Let $A_j$ represent the event that, in $j$ tosses, no run of three heads or tails occur successively and let $v_j := \mathbf{P}(A_j)$. \\
+Also, define $H_j$ as $\mathbf{P}(A_j \mid \text{first toss is a head})$ and $T_j$ as $\mathbf{P}(A_j \mid \text{first toss is a tail})$.\\
+
+Conditioning on the result of the first toss for $v_{n+4}$, 
+\begin{IEEEeqnarray*}{l}
+v_{n+4} = \mathbf{P}(A_{n+4}) = H_{n+4} p + T_{n+4} q \\
+\end{IEEEeqnarray*}
+
+But, $H_{n+4}$ is the probability of no run of three occurring in ${n+4}$ tosses given a head on the first toss, which means that either : \\
+\begin{enumerate}[(i)]
+\item The next toss is a tail (with probability $q$) and the 'state' is then reset to that in which there are $n+3$ tosses remaining with the ``first'' toss being a tail
+\item The next toss is a head, followed by a tail  (with probability $pq$) and the 'state' is then reset to that in which there are $n+2$ tosses remaining with the ``first'' toss being a tail
+\end{enumerate}
+
+So 
+\begin{equation} 
+H_{n+4} = q T_{n+3} + pq T_{n+2}
+\label{R3_1}
+\end{equation}
+Similarly : 
+\begin{equation} 
+T_{n+4} = p H_{n+3} + qp H_{n+2}
+\label{R3_2}
+\end{equation}
+
+which gives after substituting :
+\begin{IEEEeqnarray*}{l}
+v_{n+4} = pq T_{n+3} + p^2q T_{n+2} + pq H_{n+3} + q^2 p H_{n+2} \\
+\end{IEEEeqnarray*}
+
+As for the $R=2$ solution, using \eqref{R3_1} and \eqref{R3_2} again, but with $n$ reduced by $1$, and substituting a further time, this leads to 
+\begin{IEEEeqnarray*}{l}
+v_{n+4} = pq \left( pH_{n+2} + qp H_{n+1}\right) + p^2q \left( pH_{n+1} + qp H_{n}\right) \\
+\qquad\qquad\qquad\qquad\qquad + pq \left( qT_{n+2} + qp T_{n+1}\right) + q^2p \left( qT_{n+1} + qp T_{n}\right) \\
+\qquad = pq \left(pH_{n+2} + qT_{n+2} + (qp+p^2)H_{n+1} + (qp+q^2) T_{n+1} + qp^2H_n + pq^2T_n\right)
+\end{IEEEeqnarray*}
+and noting that $qp + p^2 \equiv p$, and $qp + q^2 \equiv q$ : 
+\begin{IEEEeqnarray*}{l}
+v_{n+4} = pq \left(v_{n+2} + v_{n+1} + qpv_{n}\right)
+\end{IEEEeqnarray*}
+ \\
+To get the initial conditions, with some slightly laborious counting, we can determine that : 
+\begin{IEEEeqnarray*}{l}
+v_1 = 1 \\
+v_2 = 1 \\
+v_3 = 1 - p^3 - q^3 \equiv 3pq \\
+v_4 = 2p^3q + 6p^2q^2 + 2pq^3 \equiv 2pq(p^2 + 3pq + q^2) \equiv 2pq(1+pq)
+\end{IEEEeqnarray*}
+
+Attempting to solve this we get the auxiliary equation is $\theta^4 - pq(\theta^2 + \theta + pq) = 0$ which does not factorise for $\theta$ in terms of $p$. 
+We can still derive the values for any given values of $p$ however. \\
+Below is a table of probabilities for the first few values of $n$ for $p=0.4$ and $p=0.5$ from a spreadsheet using the recurrence relationship above. 
+As it is easy to make mistakes deriving formulae,  
+it seems a good idea to verify results by using a separate mechanism - in this case, a simple Java program which simply
+ 'makes', for each value of $n$, $n$ tosses of a coin millions of times and counts the proportion which don't contain a run of three consecutive heads or tails. \\
+As you can see, the results suggest that the recurrence relation and initial conditions matches the results from the 'real' sampling and are presumably correct! \\ 
+
+\begin{table}[!hbp]
+\begin{tabular}{|l|l|l|l|
+>{\columncolor[HTML]{EFEFEF}}l |l|l|l|}
+\hline
+{\underline {\textbf{}}} & \multicolumn{3}{c|}{{\underline {\textbf{p = 0.5}}}}                           & {\underline {\textbf{}}} & \multicolumn{3}{c|}{{\underline {\textbf{p = 0.4}}}}                            \\ \hline
+\textbf{n}      & \textbf{$v_n$}                & \textbf{Ratio} & \textbf{Java } & \textbf{}       & \textbf{$v_n$}                 & \textbf{Ratio} & \textbf{Java } \\ \hline
+1               & {\color[HTML]{2F75B5} 1}     &                & 1.0000000           &                 & {\color[HTML]{2F75B5} 1}      &                & 1.0000000           \\ \hline
+2               & {\color[HTML]{2F75B5} 1}     & 1              & 1.0000000           &                 & {\color[HTML]{2F75B5} 1}      & 1              & 1.0000000           \\ \hline
+3               & {\color[HTML]{2F75B5} 0.75}  & 0.75           & 0.7499893           &                 & {\color[HTML]{2F75B5} 0.72}   & 0.72           & 0.7199326           \\ \hline
+4               & {\color[HTML]{2F75B5} 0.625} & 0.83333333    & 0.6250490           &                 & {\color[HTML]{2F75B5} 0.5952} & 0.82666667    & 0.5951957           \\ \hline
+5               & 0.5                          & 0.8            & 0.5000507           &                 & 0.4704                        & 0.79032258    & 0.4704234           \\ \hline
+6               & 0.40625                      & 0.8125         & 0.4063904           &                 & 0.373248                      & 0.79346938    & 0.3732993           \\ \hline
+7               & 0.328125                     & 0.80769230    & 0.3282143           &                 & 0.297216                      & 0.79629629    & 0.2971779           \\ \hline
+8               & 0.265625                     & 0.80952381     & 0.2657503           &                 & 0.23675904                    & 0.79658914    & 0.2367888           \\ \hline
+9               & 0.21484375                   & 0.80882352    & 0.2149047           &                 & 0.1880064                     & 0.79408330    & 0.1878943           \\ \hline
+10              & 0.173828125                  & 0.80909090    & 0.1738321           &                 & 0.149653094                   & 0.796          & 0.1496198           \\ \hline
+11              & 0.140625                     & 0.80898876    & 0.1406627           &                 & 0.119063347                   & 0.79559562    & 0.1191090           \\ \hline
+12              & 0.113769531                  & 0.80902777    & 0.1138066           &                 & 0.094675599                   & 0.7951699    & 0.0946223           \\ \hline
+13              & 0.092041016                  & 0.80901287    & 0.0920047           &                 & 0.075321115                   & 0.79557050    & 0.0753025           \\ \hline
+14              & 0.074462891                  & 0.80901856    & 0.0745270           &                 & 0.059917365                   & 0.79549228    & 0.0599458           \\ \hline
+15              & 0.060241699                  & 0.80901639    & 0.0602841           &                 & 0.04765726                    & 0.79538310    & 0.0476805           \\ \hline
+\end{tabular}
+\end{table}  
+ 
+(The first 4 values of $v_n$ are 'hardcoded' from the initial conditions, the subsequent values are derived using the recurrence relation)\\
+
+For $p=0.5$, the auxiliary equation turns out to be $\theta^4 - \frac{1}{4} \theta^2 - \frac{1}{4} \theta - \frac{1}{16} = 0$ which has the four solutions, 
+$0.8090169943749475$, $-0.30901699437494745$, $-0.25 + 0.43301270189221935i$ , $-0.25 - 0.43301270189221935i$. \\
+The complex solutions would always have constants which are designed to cancel out any lingering imaginary components, but regardless, the ``largest'' solution , i.e. the one whose powers decreases slowest to $0$ is
+$0.8090169943749475$ which happens in this case to be $\frac{\sqrt{5} + 1}{4}$. \\
+We can see from the table that the successive ratios appear to be converging to this value. Similar comments apply to other values of $p$.
+
+
+\clearpage
+
+
+
+\subsection{Answer for $R = 4$}
+This is only slightly more complex than the $R=3$ case, mainly in the areas of larger formulae and more effort getting the initial conditions. 
+Feel free to skip this section if uninterested, as there's nothing essentially new here apart from perhaps confirming some of the patterns we might have seen from the previous two solutions!\\
+
+Let $A_j$ represent the event that, in $j$ tosses, no run of four heads or tails occur successively and let $v_j := \mathbf{P}(A_j)$. \\
+Also, define $H_j$ as $\mathbf{P}(A_j \mid \text{first toss is a head})$ and $T_j$ as $\mathbf{P}(A_j \mid \text{first toss is a tail})$.\\
+
+Conditioning on the result of the first toss for $v_{n+6}$, 
+\begin{IEEEeqnarray*}{l}
+v_{n+6} = \mathbf{P}(A_{n+6}) = H_{n+6} p + T_{n+6} q \\
+\end{IEEEeqnarray*}
+
+But, $H_{n+6}$ is the probability of no run of four occurring in ${n+6}$ tosses given a head on the first toss, which means that either : \\
+\begin{enumerate}[(i)]
+\item The next toss is a tail (with probability $q$) and the 'state' is then reset to that in which there are $n+5$ tosses remaining with the ``first'' toss being a tail
+\item The next toss is a head, followed by a tail  (with probability $pq$) and the 'state' is then reset to that in which there are $n+4$ tosses remaining with the ``first'' toss being a tail
+\item The next two tosses are heads, followed by a tail  (with probability $p^2q$) and the 'state' is then reset to that in which there are $n+3$ tosses remaining with the ``first'' toss being a tail
+\end{enumerate}
+
+So 
+\begin{equation} 
+H_{n+6} = q T_{n+5} + pq T_{n+4} + p^2q t_{n+3}
+\label{R4_1}
+\end{equation}
+Similarly : 
+\begin{equation} 
+T_{n+6} = p H_{n+5} + qp H_{n+4} + q^2p H_{n+3}
+\label{R4_2}
+\end{equation}
+
+which gives after substituting :
+\begin{IEEEeqnarray*}{l}
+v_{n+6} = pq T_{n+5} + p^2q T_{n+4} + p^3q T_{n+3} + pq H_{n+5} + q^2 p H_{n+4} + q^3 p H_{n+3} \\
+\end{IEEEeqnarray*}
+
+And again, using \eqref{R4_1} and \eqref{R4_2}, but with $n$ reduced by $1$, and substituting a further time, (and noting that $qp + p^2 \equiv p$ and $pq + q^2 \equiv q$) this leads to :
+\begin{IEEEeqnarray*}{l}
+v_{n+4} = pq \left( pH_{n+4} + qp H_{n+3} + q^2p H_{n+2}\right)
+			 + p^2q \left( pH_{n+3} + qp H_{n+2} + q^2p H_{n+1} \right) \\
+\qquad			 
+			 + p^3q \left( pH_{n+2} + qp H_{n+1} + q^2p H_{n} \right) 
+             + pq \left( qT_{n+4} + pq T_{n+3} + p^2q T_{n+2}\right)  \\
+\qquad             
+             + pq^2 \left( qT_{n+3} + pq T_{n+2} + p^2q T_{n+1}\right)
+             + pq^3 \left( qT_{n+2} + pq T_{n+1} + p^2q T_{n}\right)    \\
+%
+\quad = pq \Big\{
+	pH_{n+4} + qT_{n+4} + (qp+p^2)H_{n+3} + (pq+q^2) T_{n+3} \\
+	\qquad 
+	+ (q^2p + qp^2 + p^3) H_{n+2} + (p^2q + pq^2 + q^3) T_{n+2} \\
+	\qquad 
+	+ (q^2p^2 + qp^3) H_{n+1} + (p^2q^2 + pq^3) T_{n+1} + q^2p^3 H_n + p^2q^3 T_n
+			\Big\} \\
+\quad = pq \left(v_{n+4} + v_{n+3} + (1-pq)v_{n+2} + pq v_{n+1} + p^2q^2 v_n\right)
+\end{IEEEeqnarray*}
+
+Phew!
+To get the initial conditions, we need careful counting after which we can determine that (after some simplification) : 
+\begin{IEEEeqnarray*}{l}
+v_1 = 1 \\
+v_2 = 1 \\
+v_3 = 1 \\
+v_4 = 1 - p^4 - q^4 \equiv 4p^3q + 6p^2q^2 + 4pq^3 \equiv 4pq - 2p^2q^2 \\
+v_5 = 3p^4q + 10p^3q^2 + 10p^2q^3 + 3pq^4 \equiv pq(3p^3 + 3q^3 + 10(p^2q + q^2p)) \equiv 3pq + p^2q^2 \\
+v_6 = 2p^5q + 12p^4q^2 + 20p^3q^3 + 12p^2q^4 + 2pq^5 \equiv 2pq + 4p^2q^2
+\end{IEEEeqnarray*}
+
+\clearpage
+
+As before, below is a table of probabilities for the first few values of $n$ for $p=0.4$ and $p=0.5$ from a spreadsheet using the recurrence relationship above 
+including the results from a 'brute force' Java program to lend some validity to the formulae. \\
+Again, the results suggest that the recurrence relation and initial conditions matches the results from the 'real' sampling and are presumably correct! \\ 
+
+\begin{table}[!hbp]
+\begin{tabular}{|l|l|l|l|
+>{\columncolor[HTML]{EFEFEF}}l |l|l|l|}
+\hline
+{\underline {\textbf{}}} & \multicolumn{3}{c|}{{\underline {\textbf{p = 0.5}}}}                           & {\underline {\textbf{}}} & \multicolumn{3}{c|}{{\underline {\textbf{p = 0.4}}}}  \\ \hline
+\textbf{n}      & \textbf{$v_n$}                 & \textbf{Ratio} & \textbf{Java} & \textbf{}       & \textbf{$v_n$}                 & \textbf{Ratio} & \textbf{Java} \\ \hline
+1               & {\color[HTML]{2F75B5} 1}      &                & 1.0000000            &                 & {\color[HTML]{2F75B5} 1}      &                & 1.0000000            \\ \hline
+2               & {\color[HTML]{2F75B5} 1}      & 1              & 1.0000000            &                 & {\color[HTML]{2F75B5} 1}      & 1              & 1.0000000            \\ \hline
+3               & {\color[HTML]{2F75B5} 1}      & 1              & 1.0000000            &                 & {\color[HTML]{2F75B5} 1}      & 1              & 1.0000000            \\ \hline
+4               & {\color[HTML]{2F75B5} 0.875}  & 0.875          & 0.8749609            &                 & {\color[HTML]{2F75B5} 0.8448} & 0.8448         & 0.8447761            \\ \hline
+5               & {\color[HTML]{2F75B5} 0.8125} & 0.92857142    & 0.8126014            &                 & {\color[HTML]{2F75B5} 0.7776} & 0.92045454    & 0.7776422            \\ \hline
+6               & {\color[HTML]{2F75B5} 0.75}   & 0.92307692    & 0.7500013            &                 & {\color[HTML]{2F75B5} 0.7104} & 0.91358024    & 0.7105294            \\ \hline
+7               & 0.6875                        & 0.91666666    & 0.6876102            &                 & 0.6432                        & 0.90540540    & 0.6431889            \\ \hline
+8               & 0.6328125                     & 0.92045454    & 0.6329641            &                 & 0.58263552                    & 0.90583880    & 0.5825617            \\ \hline
+9               & 0.58203125                    & 0.91975308    & 0.5820986            &                 & 0.52918272                    & 0.90825688    & 0.5290458            \\ \hline
+10              & 0.53515625                    & 0.91946308    & 0.5351430            &                 & 0.48024576                    & 0.90752351    & 0.4801654            \\ \hline
+11              & 0.4921875                     & 0.91970802    & 0.4922160            &                 & 0.43582464                    & 0.90750335    & 0.4357943            \\ \hline
+12              & 0.452636719                   & 0.91964285    & 0.4526049            &                 & 0.395404444                   & 0.90725582    & 0.3954265            \\ \hline
+13              & 0.416259766                   & 0.91963322    & 0.4162215            &                 & 0.358831227                   & 0.90750428    & 0.3588773            \\ \hline
+14              & 0.3828125                     & 0.91964809    & 0.3828548            &                 & 0.325627085                   & 0.90746585    & 0.3255918            \\ \hline
+15              & 0.352050781                   & 0.91964285    & 0.3521412            &                 & 0.295488553                   & 0.90744464    & 0.2955003            \\ \hline
+\end{tabular}
+\end{table}
+
+(The first 6 values of $v_n$ are 'hardcoded' from the initial conditions, the subsequent values are derived using the recurrence relation)\\
+
+For $p=0.5$, the auxiliary equation turns out to be $\theta^6 - \frac{1}{4} \theta^4 - \frac{1}{4} \theta^3 - \frac{3}{16}\theta^2 - \frac{1}{16}\theta - \frac{1}{64} = 0$
+which has the six solutions, $\pm0.5i$ , $-0.5$, $0.9196433776070806$, $-0.2098216888035 \pm 0.3031453646036i$. \\
+Again, the ``largest'' solution , i.e. the one whose powers decreases slowest to $0$ is
+$0.9196433776070806$ and we can see from the above table that the successive ratios appear to be converging to this value. Similar comments apply to other values of $p$.
+
+
+\subsection{Comments on solutions}
+There are some features which are worth noting and probably apply to all values of $R$. \\
+Firstly, for a given value of $R$, the final recurrence relationship is of the form $v_{n+2R} = C_{n+2R-1}v_{n+2R-1} + C_{n+2R-2}v_{n+2R-2} + \cdots + C_n v_n$. 
+I suspect that $C_{n+2R-1}$ is always $0$. \\
+
+Secondly, each approach seems to require the double substitution of the formulae for $H_i$ and $T_i$ after which 'magically' allows us to rewrite in terms of $v_i$. \\
+Thirdly, it is interesting that every recurrence relation and initial condition can be formulated in terms of $pq$ and no other functions of $p$ or $q$. 
+This is probably because of (a) the obvious symmetry between $p$ and $q$ in the problem, 
+and (b) that many symmetrical functions of $2$ variables can often be rewritten as functions of the product and sum of those variables. 
+Since $p+q \equiv 1$, we are only left with the product $pq$.  
+
+
+
+
+
+
+
+
+\end{flushleft}
+\end{document}

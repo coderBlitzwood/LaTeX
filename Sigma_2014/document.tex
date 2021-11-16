@@ -1,0 +1,82 @@
+\documentclass[a4paper,10pt]{article}
+\pagestyle{empty}
+%\pdfpagewidth=\paperwidth
+%\pdfpageheight=\paperheight
+\addtolength{\textheight}{3.1cm}
+\addtolength{\textwidth}{1.1cm}
+\addtolength{\voffset}{-2.1cm}
+%\addtolength{\textheight}{1.1cm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\author{Andy Mitchell}
+% Define the title
+\title{A small addition to Anthony Robin's article on ``Egyptian Fractions'' from SIGMA 14/05/2014} 
+\begin{document} 
+\maketitle 
+\begin{flushleft}
+
+%Turn off page numbers!
+\thispagestyle{empty}
+Anthony mentions the approach of constructing Egyptian fractions for $p/q$ by initially subtracting the largest possible $1/a_1$, then the largest possible  $1/a_2$ from the remainder etc. and demonstrated that this would produce a maximum of $p$ unit fractions in the Egyptian fraction representation.
+
+He also mentions a couple of examples in which the maximum number of unit fractions are required :-
+
+\begin{equation*} 
+\frac{4}{25} = \frac{1}{7} + \frac{1}{59} +  \frac{1}{5163} +  \frac{1}{53307975} 
+\end{equation*}
+
+\begin{equation*} 
+\frac{5}{241} = \frac{1}{49} + \frac{1}{2953} +  \frac{1}{11623993} +  \frac{1}{202675808272081} +  \frac{1}{82154966517482471538039869041} 
+\end{equation*}
+
+I wondered if, for each value of $p$, there was an Egyptian fraction representation which requires the maximum number of unit fractions.
+
+After finding several other examples, I soon found amongst them :-
+
+\begin{equation*} 
+\frac{4}{49} = \frac{1}{13} + \frac{1}{213} +  \frac{1}{67841} +  \frac{1}{9204734721} 
+\end{equation*}
+
+\begin{equation*}
+\frac{4}{73} = \frac{1}{19} + \frac{1}{463} +  \frac{1}{321091} +  \frac{1}{206198539471} 
+\end{equation*}
+
+\begin{equation*} 
+\frac{5}{121} = \frac{1}{25} + \frac{1}{757} +  \frac{1}{763309} +  \frac{1}{873960180913} +  \frac{1}{1527612795642093418846225} 
+\end{equation*} 
+
+which suggests that the fraction $\frac{n}{kn!+1}$ might require the maximum of $n$ unit fractions. 
+
+Using Anthony's method (and noting that $\frac{n}{kn!+1} = \frac{1}{k(n-1)!+1/n}$ ) it is clear that the largest unit fraction to be subtracted is $ \frac{1}{k(n-1)!+1}$. \linebreak[4]
+
+
+
+
+
+
+Now
+\begin{equation*} 
+\frac{n}{kn!+1} - \frac{1}{k(n-1)!+1} = \frac{nk(n-1)! + n - kn! - 1}{(kn!+1)(k(n-1)!+1)}
+\end{equation*} 
+
+\begin{equation*} 
+ = \frac{n - 1}{(kn(n-1)!+1)(k(n-1)!+1)}
+\end{equation*}
+
+\begin{equation*} 
+ = \frac{n - 1}{[k^2n(n-1)! + kn + k](n-1)! + 1}
+\end{equation*}
+
+\begin{equation*} 
+ = \frac{n - 1}{k'(n-1)! + 1}
+\end{equation*}
+
+where $k' = k^2n(n-1)! + kn + k$.
+
+This is of the same form as $\frac{n}{kn!+1}$ with $n$ replaced with $n-1$ (and note that one unit fraction has been subtracted).
+
+Repeating this process, it's hopefully clear that $\frac{n}{kn!+1}$ will require the full set of $n$ unit fractions in its representation as an Egyptian fraction.
+
+\end{flushleft}
+\end{document}
+

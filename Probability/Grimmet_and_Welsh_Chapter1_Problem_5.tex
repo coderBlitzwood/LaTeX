@@ -1,0 +1,48 @@
+\section{Grimmet and Welsh Chapter 1 Problem 5}
+\subsection{Question}
+
+
+Urn I has 4 white and 3 black balls. Urn II has 3 white and 7 black balls.\\
+An urn is selected at random and a ball is picked.\\
+\begin{enumerate}
+\item What is the probability that this is black?
+\item If the ball is white, what is the probability that Urn I was selected?
+\end{enumerate}
+
+\subsection{Answer to part 1}
+%\begin{eqnarray*} 
+$\mathbf{P}(\text{selected ball is black})  = $ \\ 
+$ \mathbf{P}(\text{selected ball is black} \mid \text{Urn I was selected})\times  \mathbf{P}(\text{Urn I was selected })  \quad +  $ \\
+$ \mathbf{P}(\text{selected ball is black} \mid \text{Urn II was selected})\times  \mathbf{P}(\text{Urn II was selected}) $ \\               
+%\end{eqnarray*} 
+  
+\begin{equation*} 
+= \left(\frac{3}{7}\right)\left(\frac{1}{2}\right) + \left(\frac{7}{10}\right) \left(\frac{1}{2}\right) = \frac{79}{140}   \qquad\qquad\qquad\qquad\qquad\qquad
+\end{equation*} 
+
+
+\subsection{Answer to part 2}
+$\mathbf{P}(\text{selected ball is white})  = 1 - \frac{79}{140} = \frac{61}{140} $ \\ 
+$\mathbf{P}(\text{selected ball is white} \mid \text{Urn I was selected}) = \frac{4}{7} $ \\ 
+ 
+From the definition of conditional probability (see \eqref{Formula1.6}) : 
+\begin{equation*} 
+\mathbf{P} (A \mid B) = \frac{\mathbf{P}(A \cap B)} {\mathbf{P}(B)}  
+\end{equation*} 
+\begin{equation*} 
+\therefore \mathbf{P} (A \mid B) = \mathbf{P} (B \mid A) \times \frac{\mathbf{P}(B)}{\mathbf{P}(A)} \text{   provided } \mathbf{P}(B) > 0 \text{ and } \mathbf{P}(A) > 0
+\end{equation*} 
+
+So, \\ 
+\begin{equation*} 
+\mathbf{P}(\text{Urn I was selected} \mid \text{selected ball is white}) =
+ \end{equation*} 
+ \begin{equation*} 
+\mathbf{P}(\text{selected ball is white} \mid \text{Urn I was selected}) \times \frac{\mathbf{P}(\text{Urn I was selected})}{\mathbf{P}(\text{selected ball is white}) }
+ \end{equation*} 
+ \begin{equation*} 
+= \frac{4}{7} \times \frac{\frac{1}{2}}{\frac{61}{140}} = \frac{40}{61}
+ \end{equation*} 
+ 
+
+

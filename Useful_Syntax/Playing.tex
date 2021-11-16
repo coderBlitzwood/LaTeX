@@ -1,0 +1,52 @@
+\section{Playing only}
+Firstly, here is a paragraph. \\
+
+Begin equation : CANNOT use line breaks \verb|\\| in this, so get an error : \verb|Overfull \hbox (87.92923pt too wide) detected at line 9 .| 
+\begin{equation*} 
+\therefore \mathbf{P} (\text{no one is waiting at 9:00}) 
+= \mathbf{P}(B_{8:55})e^{-1} + \mathbf{P}(B_{8:50})\mathbf{P}(B_{9:05})e^{-2} + \mathbf{P}(B_{8:40})\mathbf{P}(B_{9:05})e^{-4} 
+= \frac{1}{4}(2e^{-1} + e^{-2} + e^{-4})
+\end{equation*}
+
+Begin multline (can use line breaks!)
+\begin{multline*} 
+\therefore \mathbf{P} (\text{no one is waiting at 9:00}) \\
+= \mathbf{P}(B_{8:55})e^{-1} + \mathbf{P}(B_{8:50})\mathbf{P}(B_{9:05})e^{-2} + \mathbf{P}(B_{8:40})\mathbf{P}(B_{9:05})e^{-4} 
+\\
+= \frac{1}{4}(2e^{-1} + e^{-2} + e^{-4})
+\end{multline*}
+
+Separate equations : 
+\begin{equation*} 
+\therefore \mathbf{P} (\text{no one is waiting at 9:00}) 
+\end{equation*}
+\begin{equation*} 
+= \mathbf{P}(B_{8:55})e^{-1} + \mathbf{P}(B_{8:50})\mathbf{P}(B_{9:05})e^{-2} + \mathbf{P}(B_{8:40})\mathbf{P}(B_{9:05})e^{-4} 
+\end{equation*}
+\begin{equation*} 
+= \frac{1}{4}(2e^{-1} + e^{-2} + e^{-4})
+\end{equation*}
+
+IEEE rCl: 
+\begin{IEEEeqnarray*}{rCl}
+\therefore \mathbf{P} (\text{no one is waiting at 9:00}) & &\\
+= \mathbf{P}(B_{8:55})e^{-1} + \mathbf{P}(B_{8:50})\mathbf{P}(B_{9:05})e^{-2} + \mathbf{P}(B_{8:40})\mathbf{P}(B_{9:05})e^{-4} & &
+\\
+= \frac{1}{4}(2e^{-1} + e^{-2} + e^{-4}) & &
+\end{IEEEeqnarray*}
+
+IEEE lr: 
+\begin{IEEEeqnarray*}{lr}
+\therefore \mathbf{P} (\text{no one is waiting at 9:00}) & \\
+= \mathbf{P}(B_{8:55})e^{-1} + \mathbf{P}(B_{8:50})\mathbf{P}(B_{9:05})e^{-2} + \mathbf{P}(B_{8:40})\mathbf{P}(B_{9:05})e^{-4}  &
+\\
+= \frac{1}{4}(2e^{-1} + e^{-2} + e^{-4})  &
+\end{IEEEeqnarray*}
+
+IEEE l with a couple of qquads: 
+\begin{IEEEeqnarray*}{l}
+\therefore \mathbf{P} (\text{no one is waiting at 9:00}) \\
+\qquad = \mathbf{P}(B_{8:55})e^{-1} + \mathbf{P}(B_{8:50})\mathbf{P}(B_{9:05})e^{-2} + \mathbf{P}(B_{8:40})\mathbf{P}(B_{9:05})e^{-4}  
+\\
+\qquad = \frac{1}{4}(2e^{-1} + e^{-2} + e^{-4})  
+\end{IEEEeqnarray*} 

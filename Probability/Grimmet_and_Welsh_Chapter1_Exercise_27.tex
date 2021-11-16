@@ -1,0 +1,116 @@
+\section{Grimmet and Welsh Chapter 1 Exercise 27}
+\subsection{Question}
+
+A biased coin shows heads with probability $p = 1 - q$ whenever it is tossed. \\
+Let $u_n$ be the probability that, in $n$ tosses, no pair of heads occur successively. Show that for $n \geq 1$
+ 
+\begin{equation*} 
+u_{n+2} = q u_{n+1} + pq u_n 
+\end{equation*}
+
+and find $u_n$ by the usual method if $p = \frac{2}{3}$
+
+\subsection{Answer 1}
+% TAG is the printed reference after the equation, LABEL is only used for internal back-referencing - i.e.
+% Please see \eqref{Formula1}  will display : Please see (F1)
+
+Let $A_n$ represent the event that, in $n$ tosses, no pair of heads occur successively
+Let $B_i$ be the event that the first $(i-1)$ tosses are heads (``H") and the $i$th toss is tails (``T") (and $i \geq 1$) \\
+So $B_1$ represents the events $T\ldots$ ,\\
+$B_2$ represents the events $HT\ldots$ ,\\
+$B_3$ represents the events $HHT\ldots$  etc.\\
+
+Note that if $\Omega$ represents all possible events
+\begin{equation*} 
+\bigcup_i B_i = \Omega    \text{ and }   B_i \cap B_j = \emptyset     \text{ for all } i \neq j
+\end{equation*} \\
+
+So, we can use the Partition Theorem \eqref{Formula1.9} as follows.
+
+\begin{equation*} 
+u_{n+2} = \mathbf{P}(A_{n+2}) = \mathbf{P}(A_{n+2} \mid B_1)\mathbf{P}(B_1) + \mathbf{P}(A_{n+2} \mid B_2)\mathbf{P}(B_2) + \ldots 
+\end{equation*}
+But, $\mathbf{P}(A_{n+2} \mid B_1)$ looks at the event given a beginning ``T'', which 'resets' the starting state to having $n+1$ tosses 
+in which to get no pair of heads (since the tail does not affect the situation for subsequent throws). This also applies to $\mathbf{P}(A_{n+2} \mid B_2)$. \\
+$\mathbf{P}(A_{n+2} \mid B_3)$ , $\mathbf{P}(A_{n+2} \mid B_4)\ldots$ are all $0$ since the outcome of no pair of heads has failed for all of them. So,  
+\begin{equation*} 
+= u_{n+1} q + u_n pq + 0 + 0 + \ldots 
+\end{equation*}
+
+
+For the second part, we substitute $p = \frac{2}{3}$ to obtain
+\begin{equation*} 
+u_{n+2} = \frac{1}{3} u_{n+1} + \frac{2}{9} u_n  \implies 9u_{n+2} - 3u_{n+1} - 2u_n = 0
+\end{equation*}
+and we also note that $u_1 = 1$, and $u_2 = \frac{5}{9}$ \\
+
+Using ``standard'' methods, the auxiliary equation is $9\theta^2 - 3\theta - 2 = 0 \rightarrow (3\theta+1)(3\theta-2) = 0$ , yielding the general solution : 
+\begin{equation*} 
+u_n = A\left(\frac{-1}{3}\right)^n + B\left(\frac{2}{3}\right)^n \text{ for some } A \text{ and } B.
+\end{equation*} 
+
+\begin{equation*} 
+u_1 = 1 \implies -\frac{1}{3}A + \frac{2}{3}B = 1 \rightarrow 2B - A = 3
+\end{equation*} 
+\begin{equation*} 
+u_2 = \frac{5}{9} \implies A + 4B = 5
+\end{equation*} 
+which leads to 
+\begin{equation*} 
+B = \frac{4}{3} \text{ and } A = -\frac{1}{3}
+\end{equation*} 
+
+\begin{equation} 
+\therefore u_n = \frac{4}{3} \left(\frac{2}{3}\right)^n - \frac{1}{3} \left(\frac{-1}{3}\right)^n   \text{ for } n \geq 1
+\label{Ex27_Result}
+% TAG is the printed reference after the equation, LABEL is only used for internal back-referencing - i.e.
+% Please see \eqref{Formula1}  will display : Please see (F1)
+\end{equation} 
+
+There are other approaches considered later.
+
+\subsection{Comments}
+Below is a table of probabilities for the first few values of $n$. As it is easy to make mistakes deriving formulae, it's a good idea to verify results by using a separate mechanism - in this case, a simple Java program which
+ 'makes', for each $n$, $n$ tosses of a coin millions of times and counts the proportion which don't contain 2 consecutive heads. \\
+As you can see, the results suggest that the answers above are (probably) correct! \\ 
+\begin{table}[!hbp]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{n} & \textbf{$\frac{4}{3} \left(\frac{2}{3}\right)^n - \frac{1}{3} \left(\frac{-1}{3}\right)^n$} & \textbf{Ratio} & \textbf{Java program} \\ \hline
+1          & 1                &                & 1                                 \\ \hline
+2          & 0.5555555556     & 0.555556       & 0.55553827                        \\ \hline
+3          & 0.4074074074     & 0.733333       & 0.407404815                       \\ \hline
+4          & 0.2592592593     & 0.636364       & 0.25929586                        \\ \hline
+5          & 0.1769547325     & 0.68254        & 0.176948485                       \\ \hline
+6          & 0.1165980796     & 0.658915       & 0.116604615                       \\ \hline
+7          & 0.0781893004     & 0.670588       & 0.078175775                       \\ \hline
+8          & 0.0519737845     & 0.664717       & 0.05198466                        \\ \hline
+9          & 0.0346999949     & 0.667644       & 0.034695565                       \\ \hline
+10         & 0.0231163949     & 0.666179       & 0.023142995                       \\ \hline
+11         & 0.0154165749     & 0.666911       & 0.01540314                        \\ \hline
+12         & 0.0102758349     & 0.666545       & 0.01027086                        \\ \hline
+\end{tabular}
+\end{table}
+
+Also note the successvie ratio of probabilities for increasing values of $n$ which, as expected, converge to the dominant power $2/3$ in \eqref{Ex27_Result} above.   
+
+\subsection{Alternative solution}
+We can also get the same result by letting $v_n$ be the probability that, in $n$ tosses, a pair of heads does occur successively.
+Defining $A_n^*$ as the event that, in $n$ tosses, a pair of heads does occur successively, and $B_i$ exactly as before, 
+
+\begin{IEEEeqnarray*}{l}
+v_{n+2} = \mathbf{P}(A_{n+2}^*) = \mathbf{P}(A_{n+2}^* \mid B_1)\mathbf{P}(B_1) + \mathbf{P}(A_{n+2}^* \mid B_2)\mathbf{P}(B_2) + \ldots \\
+\qquad = v_{n+1} q + v_n pq + 1 \cdot pq + 1 \cdot p^2q + 1 \cdot p^3q + \ldots \\
+\qquad = v_{n+1} q + v_n pq + \frac{p^2 q}{ 1-p } 
+\quad = v_{n+1} q + v_n pq + p^2 
+\end{IEEEeqnarray*}
+
+from which we can either substitute $u_n = 1 - v_n$ to get the previous relation, or proceed to solve it for a particular value of $p$ and substitute later\ldots
+
+Solving for $p = \frac{2}{3}$ we obtain 
+\begin{equation} 
+v_n = 1 - \frac{4}{3} \left(\frac{2}{3}\right)^n + \frac{1}{3} \left(\frac{-1}{3}\right)^n  \equiv 1 - u_n
+% TAG is the printed reference after the equation, LABEL is only used for internal back-referencing - i.e.
+% Please see \eqref{Formula1}  will display : Please see (F1)
+\end{equation}
+

@@ -1,0 +1,74 @@
+\section{A quick guide to solving linear recurrence relations}
+\subsection{Introduction}
+
+This section only deals with techniques for solving recurrence relations (or ``difference equations'') where we have a sequence of numbers 
+$x_0, x_1, \ldots$ satisfying the relationship
+\begin{equation}  
+a_0x_{n+k} + a_1x_{n+k-1} + \cdots + a_kx_n = g(n) \qquad \text{ for } n = 0, 1, 2 \ldots
+\tag{R1} \label{Recurrence1}
+\end{equation}
+where $a_0, a_1, \ldots a_k$ are given real numbers and both $a_0 \neq 0$ and $a_k \neq 0$, and $g(n)$ is some polynomial function of $n$ (or a constant).
+\\
+To get an explicit solution, we also assume that we know the initial values $x_0, x_1, \ldots x_{k-1}$ (although any $k$ known values would suffice). 
+\\
+The first step is to find the roots of the \emph{auxiliary equation} (sometimes called the 'characteristic equation') :  
+\begin{equation} 
+a_0\theta^{k} + a_1\theta^{k-1} + \cdots + a_{k-1}\theta + a_k = 0
+\end{equation}
+
+If all of the roots (including complex roots) $\theta_1, \theta_2, \ldots \theta_k$ are distinct, then the general solution of  \eqref{Recurrence1} (where $g(n) \equiv 0$ for now) is :
+\begin{equation} 
+x_n = c_1\theta_1^{n} + c_2\theta_2^{n} + \cdots + c_k\theta_k^{n} \qquad \text{ for } n = 0, 1, 2 \ldots
+\end{equation}
+and $c_1, c_2, \ldots c_k$ are arbitrary constants which can be found by equating the first $k$ values with the known initial values, and solving the simultaneous equations.
+  
+If any roots are the same (and occur $m$ times), then the term for that root $\theta$ will instead be of the form 
+$(s_1 + s_2n + \cdots + s_mn^{m-1})\theta^n$
+
+Finally, for $g(n) \not\equiv 0$  we firstly solve as above for $g(n) \equiv 0$ to obtain the \emph{complementary solution} $x_n = \kappa_n$, then by any devious/clever means required, 
+we find a \emph{particular solution} for our particular $g(n)$, $x_n = \pi_n$
+\\
+The general solution is then simply $x_n = \kappa_n + \pi_n$.
+
+\subsection{Example 1}
+Solve $x_{n+2} - 7x_{n+1} + 10x_n = 0$ where $x_0=2$ and $x_1=3$. \\ 
+The auxiliary equation is $\theta^2 - 7 \theta + 10 = 0 \implies \theta_1 = 2, \theta_2 = 5$ (the root order is not important). \\
+The general solution is therefore of the form :
+\begin{equation} 
+x_n = c_1 2^n + c_2 5^n
+\end{equation}
+\\
+Setting $n=0$ and $n=1$ respectively, we have :
+\begin{IEEEeqnarray*}{l}
+2 = c_1 + c_2 \\
+3 = 2c_1 + 5c_2 \\
+\end{IEEEeqnarray*}
+which leads to $c_1 = \frac{7}{3}$ and $c_2 = \frac{-1}{3}$ \\
+The general solution is therefore :  
+\begin{equation} 
+x_n = \frac{7}{3} 2^n - \frac{1}{3} 5^n
+\end{equation}
+
+\subsection{Example 2}
+Solve $x_{n+3} - 5x_{n+2} + 8x_{n+1} - 4x_n = 0$ where $x_0=0$ , $x_1=3$, $x_2=13$ \\
+The auxiliary equation is $\theta^3 - 5 \theta^2 + 8 \theta - 4 = 0 \implies \theta_1 = 2, \theta_2 = 2, \theta_3 = 2$ (again the root order is not important). \\
+The general solution is therefore of the form :
+\begin{equation} 
+x_n = c_1 1^n + (c_2 + c_3n) 2^n
+\end{equation}
+\\
+The boundary conditions can then be used to determine $c_1 = 1$ , $c_2 = -1$ and $c_3 = 2$
+
+\subsection{Example 3}
+Solve $x_{n+2} - 5x_{n+1} + 6x_n = 4n+2$ where $x_0=5$ , $x_4=-37$ \\
+As above, the complementary solution is of the form 
+\begin{equation} 
+x_n = c_1 2^n + c_2 3^n
+\end{equation}
+\\
+By guesswork, trial and error, magic, instinct, or luck, we can find that $x_n = 2n+4 $ for $n=0, 1, 2, \ldots$ is a particular solution, so the general solution is therefore   
+\begin{equation} 
+x_n = c_1 2^n + c_2 3^n + 2n + 4
+\end{equation}
+The boundary conditions can then be used to determine $c_1 = 2$ and $c_2 = -1$.
+ 

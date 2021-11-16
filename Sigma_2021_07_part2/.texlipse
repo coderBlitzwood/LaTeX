@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Tue Jul 13 15:18:41 BST 2021
+outputDir=
+markDer=true
+mainTexFile=Sigma_2021_07_part2.tex
+bibrefDir=
+builderNum=2
+outputFile=Sigma_2021_07_part2.pdf
+makeIndSty=
+srcDir=
+markTmpDer=true
+tempDir=tmp
+outputFormat=pdf
+langSpell=en

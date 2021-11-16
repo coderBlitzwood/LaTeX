@@ -1,0 +1,83 @@
+\section{Formulae from ``Probability - an Introduction'' by Grimmet and Welsh (1985)}
+\subsection{From Chapter 1 and a few extras}
+
+If $A_1, A_2, \ldots$ are disjoint, i.e. $A_i \cup A_j = \emptyset$ for $i \neq j$ : 
+\begin{equation} 
+%\mathrm{P} \mathit{P} \mathnormal{P} \mathcal{P} \mathscr{P} \mathfrak{P} \mathbb{P} \mathbf{P} \mathsf{P} \mathtt{P}  
+\mathbf{P} (\bigcup_{i=1}^\infty A_i) = \sum_{i=1}^\infty \mathbf{P}(A_i) 
+\tag{F1.1} \label{Formula1.1}
+\end{equation}
+
+% TAG is the printed reference after the equation, LABEL is only used for internal back-referencing - i.e.
+% Please see \eqref{Formula1}  will display : Please see (F1)
+
+$A \setminus B$ is the \emph{difference} of sets $A$ and $B$ i.e. all points of the sample space $\Omega$ which are in $A$ but not in $B$. 
+\begin{equation} 
+A \setminus B := A \cap (\Omega \setminus B)  
+\tag{F1.2} \label{Formula1.2}
+\end{equation}
+
+
+\begin{equation} 
+\mathbf{P}(A) = \mathbf{P}(A \setminus B) + \mathbf{P} (A \cap B)  
+\tag{F1.3} \label{Formula1.3}
+\end{equation}
+
+For all sets of events $A$, $B$ : 
+\begin{equation} 
+\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B) - \mathbf{P} (A \cap B)  
+\tag{F1.4} \label{Formula1.4}
+\end{equation}
+
+And more generally : 
+\begin{equation} 
+\mathbf{P} (\bigcup_{1 \leq i \leq n} A_i) = \sum_{1 \leq i \leq n} \mathbf{P}(A_i) - 
+\sum_{1 \leq i < j \leq n} \mathbf{P}(A_i \cap A_j) + \ldots 
++ (-1)^{n+1} \mathbf{P}(\bigcap_{1 \leq i \leq n} A_i) 
+   \tag{F1.5} \label{Formula1.5}
+\end{equation}
+
+The \emph{conditional} probability of $A$ given $B$ is (if ${\mathbf{P}(B)} > 0$) :
+\begin{equation} 
+\mathbf{P} (A \mid B) = \frac{\mathbf{P}(A \cap B)} {\mathbf{P}(B)}   
+   \tag{F1.6} \label{Formula1.6}
+\end{equation}
+
+Events $A$ and $B$ are \emph{independent} if ${\mathbf{P} (A \mid B) = \mathbf{P} (A)}$ and  ${\mathbf{P} (B \mid A) = \mathbf{P} (B)}$.
+From \eqref{Formula1.6}, this implies : 
+\begin{equation} 
+\mathbf{P}(A \cap B) =  \mathbf{P} (A) \mathbf{P} (B)
+   \tag{F1.7} \label{Formula1.7}
+\end{equation}
+
+Events ${A_i}$ (where $i \in I$) are \emph{independent} if for ALL subsets $J \subseteq I$ :  
+\begin{equation} 
+\mathbf{P} (\bigcap_{i \in J} A_i) = \prod_{i \in J}  \mathbf{P}(A_i)
+   \tag{F1.8} \label{Formula1.8}
+\end{equation}
+
+\subsection{Partition Theorem}
+If $B_i \cap B_J = \emptyset$ and $\cup_i (B_i) = \Omega$ and $\mathbf{P}(B_i) > 0 \qquad \forall i$ :
+\begin{equation} 
+\mathbf{P}(A) = \sum_i \mathbf{P}(A \mid B_i)\mathbf{P}(B_i) \qquad \text{ for all } A
+   \tag{F1.9} \label{Formula1.9}
+\end{equation}
+
+\subsection{Formulae involving $p$ and $q$}
+This section includes some random identities involving the probabilities $p$ and $q = 1-p$ :
+\begin{equation}
+p^2 + q^2 \equiv 1 - 2pq \tag{PQ1} \label{PQ1}
+\end{equation}
+\begin{equation}
+p + q^2 \equiv q + p^2 \tag{PQ2} \label{PQ2}
+\end{equation}
+\begin{equation}
+q + pq + p^2  \equiv 1 \tag{PQ3} \label{PQ3}
+\end{equation}
+\begin{equation}
+p^3 + q^3  \equiv 1-3pq \tag{PQ4} \label{PQ4}
+\end{equation}
+\begin{equation}
+p^4 + q^4  \equiv 1-4pq + 2p^2q^2 \tag{PQ5} \label{PQ5}
+\end{equation}
+ 
