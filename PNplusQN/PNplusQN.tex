@@ -1,0 +1,66 @@
+\documentclass[a4paper,10pt]{article}
+\pagestyle{plain}
+%\pdfpagewidth=\paperwidth
+%\pdfpageheight=\paperheight
+\addtolength{\textheight}{3.1cm}
+\addtolength{\textwidth}{2.1cm}
+\addtolength{\voffset}{-2.1cm}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage{enumerate}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{longtable}
+\usepackage{xcolor}
+\author{Andy Mitchell}
+% Define the title
+\title{$p^n + q^n$ in terms of $pq$}
+\begin{document} 
+\maketitle 
+\begin{flushleft}
+%\tableofcontents
+
+\section{Introduction}
+In previous articles on probabilty, I required some useful formulae which express $p^n + q^n$ in terms of $pq$ where $p$ is some probability and $q = 1-p$ :-
+
+\begin{align*}
+p^2 + q^2 &\equiv 1 - 2pq  \\
+p^3 + q^3  &\equiv 1 - 3pq  \\
+p^4 + q^4  &\equiv 1 - 4pq + 2p^2q^2  \\
+\end{align*}
+ 
+and I subsequently wondered if there was a general 'simple' formula for these expressions. 
+The question is a little strange anyway, as there is really only \emph{one} variable involved (e.g. $p$), but I proceeded anyway! 
+
+\section{More examples} 
+I always think that a good first step in many problems like this is to get more examples, so here are the next few in the sequence :  
+% align around equals signs?????
+\begin{align*}
+p^5 + q^5  &\equiv 1 - 5pq + 5p^2q^2 \\
+p^6 + q^6  &\equiv 1 - 6pq + 9p^2q^2 - 2p^3q^3 \\
+p^7 + q^7  &\equiv 1 - 7pq + 14p^2q^2 - 7p^3q^3 \\
+p^8 + q^8  &\equiv 1 - 8pq + 20p^2q^2 - 16p^3q^3 + 2p^4q^4 \\
+p^9 + q^9  &\equiv 1 - 9pq + 27p^2q^2 - 30p^3q^3 + 9p^4q^4 \\
+p^{10} + q^{10}  &\equiv 1 - 10pq + 35p^2q^2 - 50p^3q^3 + 25p^4q^4 - 2p^5q^5 \\
+p^{11} + q^{11}  &\equiv 1 - 11pq + 44p^2q^2 - 77p^3q^3 + 55p^4q^4 - 11p^5q^5 \\
+p^{12} + q^{12}  &\equiv 1 - 12pq + 54p^2q^2 - 112p^3q^3 + 105p^4q^4 - 36p^5q^5 + 2p^6q^6 \\
+p^{13} + q^{13}  &\equiv 1 - 13pq + 65p^2q^2 - 156p^3q^3 + 182p^4q^4 - 91p^5q^5 + 13p^6q^6 \\
+p^{14} + q^{14}  &\equiv 1 - 14pq + 77p^2q^2 - 210p^3q^3 + 294p^4q^4 - 196p^5q^5 + 49p^6q^6 - 2p^7q^7 
+%p^{15} + q^{15}  &\equiv 1 - 15pq + 90p^2q^2 - 275p^3q^3 + 450p^4q^4 - 378p^5q^5 + 140p^6q^6 - 15p^7q^7 \\
+%p^{16} + q^{16}  &\equiv 1 - 16pq + 104p^2q^2 - 352p^3q^3 + 660p^4q^4 - 672p^5q^5 + 336p^6q^6 - 64p^7q^7 + 2p^8q^8 \\
+%p^{17} + q^{17}  &\equiv 1 - 17pq + 119p^2q^2 - 442p^3q^3 + 935p^4q^4 - 1122p^5q^5 + 714p^6q^6 - 204p^7q^7 + 17p^8q^8 \\
+\end{align*}  $\cdots $
+\begin{multline*}
+%p^{18} + q^{18}  \equiv 1 - 18pq + 135p^2q^2 - 546p^3q^3 + 1287p^4q^4 - 1782p^5q^5 + 1386p^6q^6 - 540p^7q^7 +\\ 
+%81p^8q^8 - 2p^9q^9 \\
+%p^{19} + q^{19}  \equiv 1 - 19pq + 152p^2q^2 - 665p^3q^3 + 1729p^4q^4 - 2717p^5q^5 + 2508p^6q^6 - \\ 
+%1254p^7q^7 + 285p^8q^8 - 19p^9q^9 \\
+p^{21} + q^{21}  \equiv 1 - 21pq + 189p^2q^2 - 952p^3q^3 + 2940p^4q^4 - 5733p^5q^5 + 7007p^6q^6 - \\ 
+5148p^7q^7 + 2079p^8q^8 - 385p^9q^9 + 21p^{10}q^{10} \\
+p^{22} + q^{22}  \equiv 1 - 22pq + 209p^2q^2 - 1122p^3q^3 + 3740p^4q^4 - 8008p^5q^5 + 11011p^6q^6 - \\ 
+9438p^7q^7 + 4719p^8q^8 - 1210p^9q^9 + 121p^{10}q^{10} - 2p^{11}q^{11} \\
+\end{multline*}
+\end{flushleft}
+\end{document}

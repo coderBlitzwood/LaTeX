@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Fri Nov 19 15:44:35 GMT 2021
+outputDir=
+markDer=true
+mainTexFile=PNplusQN.tex
+bibrefDir=
+builderNum=2
+outputFile=PNplusQN.pdf
+makeIndSty=
+srcDir=
+markTmpDer=true
+tempDir=tmp
+outputFormat=pdf
+langSpell=en
